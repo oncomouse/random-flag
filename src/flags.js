@@ -1,11 +1,12 @@
 const flags = [
 	{
-		"name": "tri-band",
-		"colors": 3,
-		"shapes": [
+		name: 'tri-band',
+		colors: 3,
+		dimensions: [3, 2],
+		shapes: [
 			{
-				"color": 1,
-				"points": [
+				color: 1,
+				points: [
 					[0, 0],
 					[1/3, 0],
 					[1/3, 1],
@@ -13,8 +14,8 @@ const flags = [
 				]
 			},
 			{
-				"color": 2,
-				"points": [
+				color: 2,
+				points: [
 					[1/3, 0],
 					[2/3, 0],
 					[2/3, 1],
@@ -22,8 +23,8 @@ const flags = [
 				]
 			},
 			{
-				"color": 3,
-				"points": [
+				color: 3,
+				points: [
 					[2/3, 0],
 					[1, 0],
 					[1, 1],
@@ -33,12 +34,13 @@ const flags = [
 		]
 	},
 	{
-		"name": "scandinavian",
-		"colors": 3,
-		"shapes": [
+		name: 'scandinavian',
+		colors: 3,
+		dimensions: [22,16],
+		shapes: [
 			{
-				"color": 3,
-				"points": [
+				color: 3,
+				points: [
 					[0, 0],
 					[1, 0],
 					[1, 1],
@@ -46,8 +48,8 @@ const flags = [
 				],
 			},
 			{
-				"color": 2,
-				"points": [
+				color: 2,
+				points: [
 					[0, 0],
 					[7/21, 0],
 					[7/21, 7/15],
@@ -55,8 +57,8 @@ const flags = [
 				],
 			},
 			{
-				"color": 2,
-				"points": [
+				color: 2,
+				points: [
 					[0, 8/15],
 					[7/21, 8/15],
 					[7/21, 1],
@@ -64,8 +66,8 @@ const flags = [
 				],
 			},
 			{
-				"color": 2,
-				"points": [
+				color: 2,
+				points: [
 					[8/21, 0],
 					[1, 0],
 					[1, 7/15],
@@ -73,8 +75,8 @@ const flags = [
 				],
 			},
 			{
-				"color": 2,
-				"points": [
+				color: 2,
+				points: [
 					[8/21, 8/15],
 					[1, 8/15],
 					[1, 1],
@@ -82,8 +84,8 @@ const flags = [
 				],
 			},
 			{
-				"color": 1,
-				"points": [
+				color: 1,
+				points: [
 					[0, 0],
 					[6/21, 0],
 					[6/21, 6/15],
@@ -91,8 +93,8 @@ const flags = [
 				],
 			},
 			{
-				"color": 1,
-				"points": [
+				color: 1,
+				points: [
 					[0, 9/15],
 					[6/21, 9/15],
 					[6/21, 1],
@@ -100,8 +102,8 @@ const flags = [
 				],
 			},
 			{
-				"color": 1,
-				"points": [
+				color: 1,
+				points: [
 					[9/21, 0],
 					[1, 0],
 					[1, 6/15],
@@ -109,8 +111,8 @@ const flags = [
 				],
 			},
 			{
-				"color": 1,
-				"points": [
+				color: 1,
+				points: [
 					[9/21, 9/15],
 					[1, 9/15],
 					[1, 1],
@@ -120,28 +122,29 @@ const flags = [
 		]
 	},
 	{
-		"name": "seychelles",
-		"colors": 4,
-		"shapes": [
+		name: 'seychelles',
+		colors: 4,
+		dimensions: [2, 1],
+		shapes: [
 			{
-				"color": 1,
-				"points": [
+				color: 1,
+				points: [
 					[0, 0],
 					[1/3, 0],
 					[0, 1],
 				],
 			},
 			{
-				"color": 2,
-				"points": [
+				color: 2,
+				points: [
 					[1/3, 0],
 					[2/3, 0],
 					[0, 1],
 				],
 			},
 			{
-				"color": 3,
-				"points": [
+				color: 3,
+				points: [
 					[2/3, 0],
 					[1, 0],
 					[1, 1/3],
@@ -149,16 +152,16 @@ const flags = [
 				],
 			},
 			{
-				"color": -2,
-				"points": [
+				color: -2,
+				points: [
 					[1, 1/3],
 					[1, 2/3],
 					[0, 1],
 				],
 			},
 			{
-				"color": 4,
-				"points": [
+				color: 4,
+				points: [
 					[1, 2/3],
 					[1, 1],
 					[0, 1],
@@ -166,6 +169,140 @@ const flags = [
 			},
 		],
 	},
+	{
+		name: 'simple',
+		colors: 2,
+		dimensions: [2, 1],
+		shapes: [
+			{
+				color: 1,
+				points: [
+					[0, 0],
+					[1, 0],
+					[1, 1/14],
+					[0, 1/14],
+				],
+			},
+			{
+				color: 2,
+				points: [
+					[0, 1/14],
+					[1, 1/14],
+					[1, 2/14],
+					[0, 2/14],
+				],
+			},
+			{
+				color: 1,
+				points: [
+					[0, 2/14],
+					[1, 2/14],
+					[1, 3/14],
+					[0, 3/14],
+				],
+			},
+			{
+				color: 2,
+				points: [
+					[0, 3/14],
+					[1, 3/14],
+					[1, 4/14],
+					[0, 4/14],
+				],
+			},
+			{
+				color: 1,
+				points: [
+					[0, 4/14],
+					[1, 4/14],
+					[1, 5/14],
+					[0, 5/14],
+				],
+			},
+			{
+				color: 2,
+				points: [
+					[0, 5/14],
+					[1, 5/14],
+					[1, 6/14],
+					[0, 6/14],
+				],
+			},
+			{
+				color: 1,
+				points: [
+					[0, 6/14],
+					[1, 6/14],
+					[1, 7/14],
+					[0, 7/14],
+				],
+			},
+			{
+				color: 2,
+				points: [
+					[0, 7/14],
+					[1, 7/14],
+					[1, 8/14],
+					[0, 8/14],
+				],
+			},
+			{
+				color: 1,
+				points: [
+					[0, 8/14],
+					[1, 8/14],
+					[1, 9/14],
+					[0, 9/14],
+				],
+			},
+			{
+				color: 2,
+				points: [
+					[0, 9/14],
+					[1, 9/14],
+					[1, 10/14],
+					[0, 10/14],
+				],
+			},
+			{
+				color: 1,
+				points: [
+					[0, 10/14],
+					[1, 10/14],
+					[1, 11/14],
+					[0, 11/14],
+				],
+			},
+			{
+				color: 2,
+				points: [
+					[0, 11/14],
+					[1, 11/14],
+					[1, 12/14],
+					[0, 12/14],
+				],
+			},
+			{
+				color: 1,
+				points: [
+					[0, 12/14],
+					[1, 12/14],
+					[1, 13/14],
+					[0, 13/14],
+				],
+			},
+			{
+				color: 2,
+				points: [
+					[0, 13/14],
+					[1, 13/14],
+					[1, 14/14],
+					[0, 14/14],
+				],
+			},
+		]
+
+	}
 ];
 
 export default flags;
