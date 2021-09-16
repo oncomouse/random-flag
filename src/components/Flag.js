@@ -4,13 +4,13 @@ import randomColor from 'random-color';
 import palettes from 'nice-color-palettes/1000';
 import randomFlag from '../utils/random-flag';
 
-const FLAG_WIDTH = 600;
-const FLAG_HEIGHT = 400;
+const BASE = 450;
 
 const randomFromArray = arr => arr[Math.floor(Math.random() * arr.length)];
 
-const generateColors = len => {
+const generateColors = (len) => {
 	return randomFromArray([
+		// Use nice-color-palettes to generate our palette
 		(len) => {
 			const bucket = randomFromArray(palettes).slice();
 			if (len === 5) {
@@ -23,6 +23,7 @@ const generateColors = len => {
 			}
 			// What to do for bigger than 5?
 		},
+		// Use random-color to generate our palette:
 		(len) => Array(len).fill(null).map(() => randomColor(Math.random(), Math.random()).hexString())
 	])(len);
 }
@@ -40,12 +41,12 @@ const getColor = (colors, color_index) => {
 	return colors[color_index - 1];
 }
 
-const flagToShapes = (flag, colors) => flag.shapes.map((s, i) => {
+const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => {
 	const color = getColor(colors, s.color);
 	return (
 		<Line
 			key={i}
-			points={s.points.map(([x,y]) => [x * FLAG_WIDTH, y * FLAG_HEIGHT]).flat()}
+			points={s.points.map(([x,y]) => [x * width, y * height]).flat()}
 			closed
 			fill={color}
 			strokeWidth={2}
@@ -60,11 +61,13 @@ const Flag = ({ reRender }) => {
 	useEffect(() => {
 		flag.current = randomFlag();
 		colors.current = generateColors(flag.current.colors);
-	}, [reRender])
+	}, [reRender]);
+	const flag_width = BASE * flag.current.dimensions[0] / flag.current.dimensions[1];
+	const flag_height = BASE;
 	return (
-		<Stage width={FLAG_WIDTH} height={FLAG_HEIGHT}>
+		<Stage width={flag_width} height={flag_height}>
 			<Layer>
-				{flagToShapes(flag.current, colors.current)}
+				{flagToShapes(flag.current, colors.current, flag_width, flag_height)}
 			</Layer>
 		</Stage>
 	);
