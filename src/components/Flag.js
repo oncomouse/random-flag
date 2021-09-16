@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Layer, Line, Stage } from 'react-konva';
+import { Layer, Line, Star, Stage } from 'react-konva';
 import randomColor from 'random-color';
 import palettes from 'nice-color-palettes/1000';
 import randomFlag from '../utils/random-flag';
@@ -43,6 +43,21 @@ const getColor = (colors, color_index) => {
 
 const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => {
 	const color = getColor(colors, s.color);
+	if (s.hasOwnProperty('shape')) {
+		if (s.shape.type === 'star') {
+			return (<Star
+				key={i}
+				fill={color}
+				strokeWidth={2}
+				stroke={color}
+				points={s.shape.points}
+				x={s.shape.x * width}
+				y={s.shape.y * height}
+				innerRadius={s.shape.innerRadius * height}
+				outerRadius={s.shape.outerRadius * height}
+			/>)
+		}
+	}
 	return (
 		<Line
 			key={i}
@@ -50,8 +65,8 @@ const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => 
 			closed
 			fill={color}
 			strokeWidth={2}
-			stroke={color}>
-		</Line>
+			stroke={color}
+		/>
 	)
 });
 
