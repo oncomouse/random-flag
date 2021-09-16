@@ -6,7 +6,15 @@ import randomFlag from '../utils/random-flag';
 const FLAG_WIDTH = 600;
 const FLAG_HEIGHT = 400;
 
-const generateColors = (len) => Array(len).fill(null).map(() => randomColor());
+const generateColors = (len) => Array(len).fill(null).map(() => randomColor(Math.random(), Math.random()));
+const getColor = (colors, color_index) => {
+	if (color_index === -1) {
+		return "#000000";
+	} else if (color_index === 0) {
+		return "#FFFFFF";
+	}
+	return colors[color_index - 1].hexString();
+}
 
 const flagToShapes = (flag, colors) => flag.shapes.map((s, i) => (
 	<Line
@@ -14,9 +22,9 @@ const flagToShapes = (flag, colors) => flag.shapes.map((s, i) => (
 		test={console.log(s.points.map(([x,y]) => [(x/100) * FLAG_WIDTH, (y/100) * FLAG_HEIGHT]).flat())}
 		points={s.points.map(([x,y]) => [(x/100) * FLAG_WIDTH, (y/100) * FLAG_HEIGHT]).flat()}
 		closed
-		fill={colors[s.color - 1].hexString()}
+		fill={getColor(colors, s.color)}
 		strokeWidth={2}
-		stroke={colors[s.color - 1].hexString()}>
+		stroke={getColor(colors, s.color)}>
 	</Line>
 ));
 
