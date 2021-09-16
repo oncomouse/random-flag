@@ -6,6 +6,7 @@ const App = () => {
 	return (
 		<div className="App">
 			<Flag reRender={count}/>
+			<button onClick={updateCount}>New Flag</button>
 		</div>
 	);
 }
