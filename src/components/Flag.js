@@ -1,47 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { Layer, Line, Star, Stage } from 'react-konva';
-import randomColor from 'random-color';
-import palettes from 'nice-color-palettes/1000';
+import randomOrValue from '../utils/random-or-value';
 import randomFlag from '../utils/random-flag';
+import generateColors from '../utils/generate-colors';
+import getColor from '../utils/getColor';
 
+// Base size of a flag, in this case a height of 450:
 const BASE = 450;
-
-const randomFromArray = arr => arr[Math.floor(Math.random() * arr.length)];
-
-const generateColors = (len) => {
-	return randomFromArray([
-		// Use nice-color-palettes to generate our palette
-		(len) => {
-			const bucket = randomFromArray(palettes).slice();
-			if (len === 5) {
-				return bucket;
-			}
-			if (len < 5) {
-				return Array(len).fill(null).map(() => {
-					return bucket.splice(Math.floor(Math.random() * bucket.length), 1)[0];
-				})
-			}
-			// What to do for bigger than 5?
-		},
-		// Use random-color to generate our palette:
-		(len) => Array(len).fill(null).map(() => randomColor(Math.random(), Math.random()).hexString())
-	])(len);
-}
-
-const getColor = (colors, color_index) => {
-	if (color_index === -1) {
-		return '#000000';
-	}
-	if (color_index === 0) {
-		return '#FFFFFF';
-	}
-	if (color_index === -2) {
-		return randomFromArray(['#000000', '#FFFFFF']);
-	}
-	return colors[color_index - 1];
-}
-
-const randomOrValue = maybeArray => (Array.isArray(maybeArray)) ? randomFromArray(maybeArray) : maybeArray;
 
 const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => {
 	const color = getColor(colors, s.color);
