@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Flag from './components/Flag';
+import Flag from '../components/Flag';
 import './App.css';
 
 const App = () => {
