@@ -175,11 +175,9 @@ const flags = [
 		dimensions: [2, 1],
 		shapes: [
 			{
-				shape: {
-					type: 'stripes',
-					count: 14,
-					direction: 'horizontal',
-				}
+				type: 'stripes',
+				count: 14,
+				direction: 'horizontal',
 			}
 		]
 
@@ -278,12 +276,10 @@ const flags = [
 		dimensions: [2, 1],
 		shapes: [
 			{
-				shape: {
-					type: 'stripes',
-					count: 5,
-					direction: 'horizontal',
-					colors: [1, 2],
-				},
+				type: 'stripes',
+				count: 5,
+				direction: 'horizontal',
+				colors: [1, 2],
 			},
 			{
 				color: 3,
@@ -295,14 +291,12 @@ const flags = [
 			},
 			{
 				color: 2,
-				shape: {
-					type: 'star',
-					points: 5,
-					x: Math.sqrt(3)/12,
-					y: 0.5,
-					outerRadius: 3/20,
-					innerRadius: 3/50,
-				},
+				type: 'star',
+				points: 5,
+				x: Math.sqrt(3)/12,
+				y: 0.5,
+				outerRadius: 3/20,
+				innerRadius: 3/50,
 			},
 		],
 	},

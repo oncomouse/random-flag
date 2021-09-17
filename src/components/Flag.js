@@ -43,51 +43,54 @@ const getColor = (colors, color_index) => {
 
 const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => {
 	const color = getColor(colors, s.color);
-	if (s.hasOwnProperty('shape')) {
-		if (s.shape.type === 'star') {
-			return (<Star
-				key={i}
-				fill={color}
-				strokeWidth={2}
-				stroke={color}
-				points={s.shape.points}
-				x={s.shape.x * width}
-				y={s.shape.y * height}
-				innerRadius={s.shape.innerRadius * height}
-				outerRadius={s.shape.outerRadius * height}
-			/>)
-		}
-		if (s.shape.type === 'stripes') {
-			const stripe_colors = s.shape.hasOwnProperty('colors') ? s.shape.colors : Array(colors.length).fill(null).map((_,i) => i + 1);
-			let color_count = 0;
-			return Array(s.shape.count).fill(null).map((_, i) => {
-				const color = getColor(colors, stripe_colors[color_count]);
-				color_count = color_count + 1 === stripe_colors.length ? 0 : color_count + 1;
-				return (<Line
-					key={`stripe-${i}`}
-					fill={color}
-					stroke={color}
-					strokeWidth={2}
-					closed
-					points={
-						s.shape.direction === 'vertical' ?
-							[i * 1/s.shape.count * width, 0 * height, i * 1/s.shape.count * width, 1 * height, (i+1) * 1/s.shape.count * width, 1 * height, (i+1) * 1/s.shape.count * width, 0 * height] :
-							[0 * width, i * 1/s.shape.count * height, 1 * width, i * 1/s.shape.count * height, 1 * width, (i+1) * 1/s.shape.count * height, 0 * width, (i+1) * 1/s.shape.count * height]
-					}
-				/>)
-			})
-		}
-	}
-	return (
-		<Line
+	const type = s.type || 'line';
+	console.log(type, flag.name);
+	if (type === 'star') {
+		return (<Star
 			key={i}
-			points={s.points.map(([x,y]) => [x * width, y * height]).flat()}
-			closed
 			fill={color}
 			strokeWidth={2}
 			stroke={color}
-		/>
-	)
+			points={s.points}
+			x={s.x * width}
+			y={s.y * height}
+			innerRadius={s.innerRadius * height}
+			outerRadius={s.outerRadius * height}
+		/>)
+	}
+	if (type === 'stripes') {
+		const stripe_colors = s.hasOwnProperty('colors') ? s.colors : Array(colors.length).fill(null).map((_,i) => i + 1);
+		let color_count = 0;
+		return Array(s.count).fill(null).map((_, i) => {
+			const color = getColor(colors, stripe_colors[color_count]);
+			color_count = color_count + 1 === stripe_colors.length ? 0 : color_count + 1;
+			return (<Line
+				key={`stripe-${i}`}
+				fill={color}
+				stroke={color}
+				strokeWidth={2}
+				closed
+				points={
+					s.direction === 'vertical' ?
+						[i * 1/s.count * width, 0 * height, i * 1/s.count * width, 1 * height, (i+1) * 1/s.count * width, 1 * height, (i+1) * 1/s.count * width, 0 * height] :
+						[0 * width, i * 1/s.count * height, 1 * width, i * 1/s.count * height, 1 * width, (i+1) * 1/s.count * height, 0 * width, (i+1) * 1/s.count * height]
+				}
+			/>)
+		})
+	}
+	if (type === 'line') {
+		return (
+			<Line
+				key={i}
+				points={s.points.map(([x,y]) => [x * width, y * height]).flat()}
+				closed
+				fill={color}
+				strokeWidth={2}
+				stroke={color}
+			/>
+		)
+	}
+	return (<div/>);
 }).flat();
 
 const Flag = ({ reRender }) => {
