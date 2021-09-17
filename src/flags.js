@@ -5,33 +5,11 @@ const flags = [
 		dimensions: [3, 2],
 		shapes: [
 			{
-				color: 1,
-				points: [
-					[0, 0],
-					[1/3, 0],
-					[1/3, 1],
-					[0, 1],
-				]
+				type: 'stripes',
+				count: 3,
+				direction: 'vertical',
 			},
-			{
-				color: 2,
-				points: [
-					[1/3, 0],
-					[2/3, 0],
-					[2/3, 1],
-					[1/3, 1],
-				]
-			},
-			{
-				color: 3,
-				points: [
-					[2/3, 0],
-					[1, 0],
-					[1, 1],
-					[2/3, 1],
-				]
-			}
-		]
+		],
 	},
 	{
 		name: 'scandinavian',

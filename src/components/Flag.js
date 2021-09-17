@@ -44,7 +44,6 @@ const getColor = (colors, color_index) => {
 const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => {
 	const color = getColor(colors, s.color);
 	const type = s.type || 'line';
-	console.log(type, flag.name);
 	if (type === 'star') {
 		return (<Star
 			key={i}
