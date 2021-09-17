@@ -1,5 +1,17 @@
 const flags = [
 	{
+		name: 'randoml-stripes',
+		colors: 5,
+		dimensions: [3, 2],
+		shapes: [
+			{
+				type: 'stripes',
+				count: [2,2,3,3,3,3,4,4,4,5,5,5,6,6,7],
+				direction: ['horizontal', 'vertical'],
+			}
+		]
+	},
+	{
 		name: 'tri-band',
 		colors: 3,
 		dimensions: [3, 2],
@@ -148,7 +160,7 @@ const flags = [
 		],
 	},
 	{
-		name: 'simple',
+		name: 'majapahit',
 		colors: 2,
 		dimensions: [2, 1],
 		shapes: [

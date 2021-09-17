@@ -41,6 +41,8 @@ const getColor = (colors, color_index) => {
 	return colors[color_index - 1];
 }
 
+const randomOrValue = maybeArray => (Array.isArray(maybeArray)) ? randomFromArray(maybeArray) : maybeArray;
+
 const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => {
 	const color = getColor(colors, s.color);
 	const type = s.type || 'line';
@@ -60,7 +62,9 @@ const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => 
 	if (type === 'stripes') {
 		const stripe_colors = s.hasOwnProperty('colors') ? s.colors : Array(colors.length).fill(null).map((_,i) => i + 1);
 		let color_count = 0;
-		return Array(s.count).fill(null).map((_, i) => {
+		const count = randomOrValue(s.count);
+		const direction = randomOrValue(s.direction)
+		return Array(count).fill(null).map((_, i) => {
 			const color = getColor(colors, stripe_colors[color_count]);
 			color_count = color_count + 1 === stripe_colors.length ? 0 : color_count + 1;
 			return (<Line
@@ -70,9 +74,9 @@ const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => 
 				strokeWidth={2}
 				closed
 				points={
-					s.direction === 'vertical' ?
-						[i * 1/s.count * width, 0 * height, i * 1/s.count * width, 1 * height, (i+1) * 1/s.count * width, 1 * height, (i+1) * 1/s.count * width, 0 * height] :
-						[0 * width, i * 1/s.count * height, 1 * width, i * 1/s.count * height, 1 * width, (i+1) * 1/s.count * height, 0 * width, (i+1) * 1/s.count * height]
+					direction === 'vertical' ?
+						[i * 1/count * width, 0 * height, i * 1/count * width, 1 * height, (i+1) * 1/count * width, 1 * height, (i+1) * 1/count * width, 0 * height] :
+						[0 * width, i * 1/count * height, 1 * width, i * 1/count * height, 1 * width, (i+1) * 1/count * height, 0 * width, (i+1) * 1/count * height]
 				}
 			/>)
 		})
