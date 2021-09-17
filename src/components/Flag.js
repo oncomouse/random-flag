@@ -8,6 +8,12 @@ import getColor from '../utils/get-color';
 // Base size of a flag, in this case a height of 450:
 const BASE = 450;
 
+// Translates a flag template and a color palette into a flag image of with a
+// width and a height provided. Process the "shapes" element of the flag object
+// and convert each shape into the appropriate Konva shape. Supported shapes
+// are 'star', 'stripes', and 'line' (default).
+//
+// See src/flags.js for more information on the flag template.
 const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => {
 	const color = getColor(colors, s.color);
 	const type = s.type || 'line';
