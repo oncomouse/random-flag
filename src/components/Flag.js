@@ -3,7 +3,7 @@ import { Layer, Line, Star, Stage } from 'react-konva';
 import randomOrValue from '../utils/random-or-value';
 import randomFlag from '../utils/random-flag';
 import generateColors from '../utils/generate-colors';
-import getColor from '../utils/getColor';
+import getColor from '../utils/get-color';
 
 // Base size of a flag, in this case a height of 450:
 const BASE = 450;
