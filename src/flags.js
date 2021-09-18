@@ -1,6 +1,43 @@
+/*
+* Definition of flag templates. Exports an array of flag templates
+*
+* Each flag template is an object that has:
+* - name -- The name of the template, this can be anything and is included for
+*   debugging.
+* - colors -- Number of colors used in the image (can be a number or an arry of
+*   numbers to pick from).
+* - dimensions -- The ratio of width to height expressed as a two digit array.
+* - shapes -- An array of shape objects (more on this below).
+*
+* Note on values that can be numbers or arrays: If an array is used instead of
+* a value, a random number will be picked from the array, as if it were a deck
+* of cards. Thus, the same value can be included multiple times. This lets 
+* weighted choices be easily produced. For instance, [2,2,2,2,3] will mean 2
+* has four chances of being chosen while 3 has only one.
+*
+* Each shape is an object with the following properties:
+* - type -- Can be 'stripes', 'star', or 'line' (which is the assumed default).
+* 
+* Options vary by shape:
+* - 'line' has the following keys:
+*   - color -- the palette index (1-based) for the palette color to use (can
+*     also be an array to pick from)
+*   - points -- A two dimensional array of x,y coordinates to draw points at.
+*     Lines are always closed, so three points will define a triangle, four a
+*     square. Order matters!
+* - 'stripes' has the following keys:
+*   - count -- Number of stripes (can also be an array to pick from)
+*   - direction -- 'vertical' or 'horizontal' (can also be an array to pick from)
+*   - color -- An array of color indices (1-based) indicating the colors from
+*     the palette to use as colors of the stripes. Default is to use the whole
+*     palette. If you wanted to make stripes using the first and second colors
+*     of the palette, color could be set to `[1,2]`. The cuban template uses
+*     this form.
+* - 'star' has the following keys:
+*/
 const flags = [
 	{
-		name: 'randoml-stripes',
+		name: 'random-stripes',
 		colors: 5,
 		dimensions: [3, 2],
 		shapes: [
