@@ -18,16 +18,19 @@ const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => 
 	const color = getColor(colors, s.color);
 	const type = s.type || 'line';
 	if (type === 'star') {
+		const points = randomOrValue(s.points);
+		const innerRadius = randomOrValue(s.innerRadius);
+		const outerRadius = randomOrValue(s.outerRadius);
 		return (<Star
 			key={i}
 			fill={color}
 			strokeWidth={2}
 			stroke={color}
-			points={s.points}
+			points={points}
 			x={s.x * width}
 			y={s.y * height}
-			innerRadius={s.innerRadius * height}
-			outerRadius={s.outerRadius * height}
+			innerRadius={innerRadius * height}
+			outerRadius={outerRadius * height}
 		/>)
 	}
 	if (type === 'stripes') {
