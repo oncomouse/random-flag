@@ -34,11 +34,19 @@
 *     of the palette, color could be set to `[1,2]`. The cuban template uses
 *     this form.
 * - 'star' has the following keys:
+*   - color -- the palette index (1-based) for the palette color to use (can
+*     also be an array to pick from)
 *   - points -- The number of points on the star (can also be an array to pick from)
 *   - x -- The x coordinate of the star's center
 *   - y -- The y coordinate of the star's center
 *   - outerRadius -- The radius of the star's points (can also be an array to pick from)
 *   - innerRadius -- The radius of the star's narrowest point (can also be an array to pick from)
+* - 'circle' has the following keys:
+*   - color -- the palette index (1-based) for the palette color to use (can
+*     also be an array to pick from)
+*   - radius -- The radius of the circle
+*   - x -- The x coordinate of the circle's center
+*   - y -- The y coordinate of the circle's center
 */
 const flags = [
 	{

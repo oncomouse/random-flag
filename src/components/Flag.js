@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Layer, Line, Star, Stage } from 'react-konva';
+import { Circle, Layer, Line, Star, Stage } from 'react-konva';
 import randomOrValue from '../utils/random-or-value';
 import randomFlag from '../utils/random-flag';
 import generateColors from '../utils/generate-colors';
@@ -17,6 +17,16 @@ const BASE = 450;
 const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => {
 	const color = getColor(colors, s.color);
 	const type = s.type || 'line';
+	if (type === 'circle') {
+		return (<Circle
+			radius={s.radius}
+			x={s.x}
+			y={s.y}
+			fill={color}
+			strokeWidth={2}
+			stroke={color}
+		/>);
+	}
 	if (type === 'star') {
 		const points = randomOrValue(s.points);
 		const innerRadius = randomOrValue(s.innerRadius);
