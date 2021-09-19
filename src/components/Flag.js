@@ -19,6 +19,7 @@ const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => 
 	const type = s.type || 'line';
 	if (type === 'circle') {
 		return (<Circle
+			key={i}
 			radius={s.radius * height}
 			x={s.x * width}
 			y={s.y * height}
@@ -83,7 +84,9 @@ const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => 
 const Flag = ({ reRender }) => {
 	const flag = useRef(randomFlag());
 	const colors = useRef(generateColors(flag.current.colors));
+	const layerRef = useRef(null);
 	useEffect(() => {
+		layerRef.current.clear();
 		flag.current = randomFlag();
 		colors.current = generateColors(flag.current.colors);
 	}, [reRender]);
@@ -91,7 +94,7 @@ const Flag = ({ reRender }) => {
 	const flag_height = BASE;
 	return (
 		<Stage width={flag_width} height={flag_height}>
-			<Layer>
+			<Layer ref={layerRef}>
 				{flagToShapes(flag.current, colors.current, flag_width, flag_height)}
 			</Layer>
 		</Stage>
