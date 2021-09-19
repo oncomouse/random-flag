@@ -44,7 +44,7 @@
 * - 'circle' has the following keys:
 *   - color -- the palette index (1-based) for the palette color to use (can
 *     also be an array to pick from)
-*   - radius -- The radius of the circle
+*   - radius -- The radius of the circle (radius is a ratio of height)
 *   - x -- The x coordinate of the circle's center
 *   - y -- The y coordinate of the circle's center
 */
@@ -337,6 +337,29 @@ const flags = [
 				y: 0.5,
 				outerRadius: 3/20,
 				innerRadius: 3/50,
+			},
+		],
+	},
+	{
+		name: 'japan',
+		colors: 2,
+		dimensions: [3, 2],
+		shapes: [
+			{
+				color: 1,
+				points: [
+					[0, 0],
+					[0, 1],
+					[1, 1],
+					[1, 0],
+				],
+			},
+			{
+				type: 'circle',
+				color: 2,
+				radius: 3/10,
+				x: 0.5,
+				y: 0.5,
 			},
 		],
 	},

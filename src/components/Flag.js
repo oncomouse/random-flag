@@ -19,9 +19,9 @@ const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => 
 	const type = s.type || 'line';
 	if (type === 'circle') {
 		return (<Circle
-			radius={s.radius}
-			x={s.x}
-			y={s.y}
+			radius={s.radius * height}
+			x={s.x * width}
+			y={s.y * height}
 			fill={color}
 			strokeWidth={2}
 			stroke={color}
