@@ -28,7 +28,7 @@
 * - 'stripes' has the following keys:
 *   - count -- Number of stripes (can also be an array to pick from)
 *   - direction -- 'vertical' or 'horizontal' (can also be an array to pick from)
-*   - color -- An array of color indices (1-based) indicating the colors from
+*   - colors -- An array of color indices (1-based) indicating the colors from
 *     the palette to use as colors of the stripes. Default is to use the whole
 *     palette. If you wanted to make stripes using the first and second colors
 *     of the palette, color could be set to `[1,2]`. The cuban template uses
@@ -357,6 +357,26 @@ const flags = [
 			{
 				type: 'circle',
 				color: 2,
+				radius: 3/10,
+				x: 0.5,
+				y: 0.5,
+			},
+		],
+	},
+	{
+		name: 'stripes-and-circles',
+		colors: 3,
+		dimensions: [3, 2],
+		shapes: [
+			{
+				type: 'stripes',
+				colors: [2, 3],
+				direction: ['horizontal', 'vertical'],
+				count: [1,1,2,2,2,3],
+			},
+			{
+				type: 'circle',
+				color: 1,
 				radius: 3/10,
 				x: 0.5,
 				y: 0.5,
