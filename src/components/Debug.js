@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import mexp from 'math-expression-evaluator';
 import flags from '../flags';
 
 const validateStringInput = (str) => {
-	if (str.match(/^\-{0,1}[0-9.]+$/g)) {
+	if (str.match(/^-{0,1}[0-9.]+$/g)) {
 		return parseFloat(str, 10);
 	}
 	try {
@@ -13,6 +13,8 @@ const validateStringInput = (str) => {
 		return null;
 	}
 }
+
+const RegisterContext = createContext(null);
 
 const Debug = (props) => {
 	const {
@@ -44,25 +46,27 @@ const Debug = (props) => {
 		return () => subscription.unsubscribe();
 	}, [watch, update, custom, updateCustom]);
 	return (<form onSubmit={handleSubmit(onSubmit)}>
-		<label htmlFor="name">Which Flag Template to Render:</label>
-		<select id="name" {...register('name', { value: 'random', })}>
-			<option value="random">Random (default behavior)</option>
-			{flags.map((flag, i) => (
-				<option key={i} value={flag.name}>{flag.name}</option>
-			))}
-			<option value="custom">Custom (define below)</option>
-		</select>
-		{ !custom ? null : (
-			<CustomForm register={register} type={type}></CustomForm>
-		) }
+		<RegisterContext.Provider value={register}>
+			<label htmlFor="name">Which Flag Template to Render:</label>
+			<select id="name" {...register('name', { value: 'random', })}>
+				<option value="random">Random (default behavior)</option>
+				{flags.map((flag, i) => (
+					<option key={i} value={flag.name}>{flag.name}</option>
+				))}
+				<option value="custom">Custom (define below)</option>
+			</select>
+			{ !custom ? null : (
+				<CustomForm type={type}></CustomForm>
+			) }
+		</RegisterContext.Provider>
 	</form>);
 }
 
 const CustomForm = (props) => {
 	const {
-		register,
 		type,
 	} = props;
+	const register = useContext(RegisterContext);
 	return (
 		<div>
 			<label htmlFor="custom-name">Template Name</label>
@@ -74,30 +78,28 @@ const CustomForm = (props) => {
 				<option value="stripes">Stripes</option>
 				<option value="star">Star</option>
 			</select>
-			{ shapeInput(type, register) }
+			{ shapeInput(type) }
 		</div>
 	);
 }
 
-const shapeInput = (type, register) => {
+const shapeInput = (type) => {
 	if (type === 'line') {
-		return (<LineForm register={register} />);
+		return (<LineForm />);
 	}
 	if (type === 'circle') {
-		return (<CircleForm register={register} />);
+		return (<CircleForm />);
 	}
 	if (type === 'stripes') {
-		return (<StripesForm register={register} />);
+		return (<StripesForm />);
 	}
 	if (type === 'star') {
-		return (<StarForm register={register} />);
+		return (<StarForm />);
 	}
 }
 
 const LineForm = (props) => {
-	const {
-		register
-	} = props;
+	const register = useContext(RegisterContext);
 	return (
 		<div>
 		</div>
@@ -105,27 +107,21 @@ const LineForm = (props) => {
 }
 
 const CircleForm = (props) => {
-	const {
-		register
-	} = props;
+	const register = useContext(RegisterContext);
 	return (
 		<div />
 	)
 }
 
 const StripesForm = (props) => {
-	const {
-		register
-	} = props;
+	const register = useContext(RegisterContext);
 	return (
 		<div />
 	)
 }
 
 const StarForm = (props) => {
-	const {
-		register
-	} = props;
+	const register = useContext(RegisterContext);
 	return (
 		<div />
 	)
