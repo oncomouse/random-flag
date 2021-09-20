@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "cutestrap": "^2.0.0-4",
     "math-expression-evaluator": "^1.3.8",
     "nice-color-palettes": "^3.0.0",
     "ramda": "^0.27.1",
