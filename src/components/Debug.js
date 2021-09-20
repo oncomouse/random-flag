@@ -58,77 +58,9 @@ const Debug = (props) => {
 					))}
 					<option value="custom">Custom (define below)</option>
 				</select>
-				{ !custom ? null : (
-					<CustomForm type={type}></CustomForm>
-				) }
 			</RegisterContext.Provider>
 		</form>
 	</div>);
-}
-
-const CustomForm = (props) => {
-	const {
-		type,
-	} = props;
-	const register = useContext(RegisterContext);
-	return (
-		<div>
-			<label htmlFor="custom-name">Template Name:</label>
-			<input id="custom-name" { ...register('custom.name') } />
-			<label htmlFor="custom-type">Template Type:</label>
-			<select id="custom-type" {...register('custom.type', { value: 'line' })}>
-				<option value="line">Line</option>
-				<option value="circle">Circle</option>
-				<option value="stripes">Stripes</option>
-				<option value="star">Star</option>
-			</select>
-			{ shapeInput(type) }
-		</div>
-	);
-}
-
-const shapeInput = (type) => {
-	if (type === 'line') {
-		return (<LineForm />);
-	}
-	if (type === 'circle') {
-		return (<CircleForm />);
-	}
-	if (type === 'stripes') {
-		return (<StripesForm />);
-	}
-	if (type === 'star') {
-		return (<StarForm />);
-	}
-}
-
-const LineForm = (props) => {
-	const register = useContext(RegisterContext);
-	return (
-		<div>
-		</div>
-	)
-}
-
-const CircleForm = (props) => {
-	const register = useContext(RegisterContext);
-	return (
-		<div />
-	)
-}
-
-const StripesForm = (props) => {
-	const register = useContext(RegisterContext);
-	return (
-		<div />
-	)
-}
-
-const StarForm = (props) => {
-	const register = useContext(RegisterContext);
-	return (
-		<div />
-	)
 }
 
 export default Debug;
