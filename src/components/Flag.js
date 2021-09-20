@@ -1,4 +1,3 @@
-import React from 'react';
 import { Circle, Layer, Line, Star, Stage } from 'react-konva';
 import randomOrValue from '../utils/random-or-value';
 import randomFlag from '../utils/random-flag';
@@ -81,11 +80,26 @@ const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => 
 	return (<div/>);
 }).flat();
 
+const getFlagFromDebugInformation = (debug) => {
+	if (!debug.hasOwnProperty('name') || debug.name === 'random')  {
+		return randomFlag();
+	}
+	if (debug.name === 'custom') {
+		/* if (test for defined custom flag) {
+		 *	return debug.custom;
+		 * }
+		 */
+		// If custom flag is invalid or not complete:
+		return randomFlag();
+	}
+	return randomFlag(debug.name);
+}
+
 const Flag = (props) => {
 	const {
 		debug
 	} = props;
-	const flag = (!debug.hasOwnProperty('name') || debug.name === 'random') ? randomFlag() : randomFlag(debug.name);
+	const flag = getFlagFromDebugInformation(debug);
 	const colors = generateColors(flag.colors);
 
 	const flag_width = BASE * flag.dimensions[0] / flag.dimensions[1];

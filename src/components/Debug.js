@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import flags from '../flags';
 
@@ -8,8 +8,8 @@ const Debug = (props) => {
 	} = props;
 	const { register, watch, handleSubmit } = useForm();
 	const onSubmit = data => console.log(data);
-	const [custom, updateCustom] = React.useState(false);
-	React.useEffect(() => {
+	const [custom, updateCustom] = useState(false);
+	useEffect(() => {
 		const subscription = watch((value, { name, type }) => {
 			if (name === 'name' &&  type === 'change') {
 				if (value !== 'custom') {
@@ -25,7 +25,7 @@ const Debug = (props) => {
 			}
 		});
 		return () => subscription.unsubscribe();
-	}, [watch, update]);
+	}, [watch, update, custom, updateCustom]);
 	return (<form onSubmit={handleSubmit(onSubmit)}>
 		<label htmlFor="name">Which Flag Template to Render:</label>
 		<select id="name" {...register('name')}>
@@ -35,6 +35,12 @@ const Debug = (props) => {
 			))}
 			<option value="custom">Custom (define below)</option>
 		</select>
+		{ !custom ? null : (
+			<div>
+				<label htmlFor="custom-name">Template Name</label>
+				<input id="custom-name" { ...register('custom.name') } />
+			</div>
+		) }
 	</form>);
 }
 
