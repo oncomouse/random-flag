@@ -82,20 +82,20 @@ const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => 
 }).flat();
 
 const Flag = ({ reRender }) => {
-	const flag = useRef(randomFlag());
-	const colors = useRef(generateColors(flag.current.colors));
+	const flag = randomFlag();
+	const colors = generateColors(flag.colors);
 	const layerRef = useRef(null);
-	useEffect(() => {
+	if (layerRef.current !== null) {
 		layerRef.current.clear();
-		flag.current = randomFlag();
-		colors.current = generateColors(flag.current.colors);
-	}, [reRender]);
-	const flag_width = BASE * flag.current.dimensions[0] / flag.current.dimensions[1];
+	}
+	const flag_width = BASE * flag.dimensions[0] / flag.dimensions[1];
 	const flag_height = BASE;
+	const stage_width = BASE * 2;
+	const stage_height = flag_height;
 	return (
-		<Stage width={flag_width} height={flag_height}>
-			<Layer ref={layerRef}>
-				{flagToShapes(flag.current, colors.current, flag_width, flag_height)}
+		<Stage height={stage_height} width={stage_width}>
+			<Layer ref={layerRef} width={flag_width} height={flag_height} x={(stage_width - flag_width) / 2} y={(stage_height - flag_height) / 2}>
+				{flagToShapes(flag, colors, flag_width, flag_height)}
 			</Layer>
 		</Stage>
 	);
