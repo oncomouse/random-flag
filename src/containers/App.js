@@ -13,7 +13,7 @@ const App = () => {
 		<div className="wrapper ta-center">
 				<Flag reRender={count} debug={debug}/>
 				<button onClick={updateCount} class="button -centered -new-flag">New Flag</button>
-			{ DEBUG ? <Debug update={updateDebug} /> : null }
+			{ DEBUG ? <Debug debug={debug} update={updateDebug} /> : null }
 		</div>
 	);
 }

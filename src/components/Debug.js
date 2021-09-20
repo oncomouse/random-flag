@@ -19,6 +19,7 @@ const RegisterContext = createContext(null);
 
 const Debug = (props) => {
 	const {
+		debug,
 		update
 	} = props;
 	const { register, watch, handleSubmit } = useForm();
@@ -29,6 +30,7 @@ const Debug = (props) => {
 		const subscription = watch((value, { name, type }) => {
 			if (name === 'name' &&  type === 'change') {
 				update({
+					...debug,
 					name: value.name,
 				})
 				if (value.name !== 'custom') {
@@ -38,9 +40,6 @@ const Debug = (props) => {
 				} else {
 					updateCustom(true);
 				}
-			}
-			if (name === 'custom.type' && type === 'change') {
-				updateType(value.custom.type);
 			}
 			console.log(value, name, type);
 		});
