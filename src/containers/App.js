@@ -10,9 +10,9 @@ const App = () => {
 	const [count, updateCount] = useState(0);
 	const [debug, updateDebug] = useState({});
 	return (
-		<div className="wrapper -wide ta-center">
+		<div className="wrapper ta-center">
 				<Flag reRender={count} debug={debug}/>
-				<button onClick={updateCount} class="centered-button new-flag-button">New Flag</button>
+				<button onClick={updateCount} class="button -centered -new-flag">New Flag</button>
 			{ DEBUG ? <Debug update={updateDebug} /> : null }
 		</div>
 	);

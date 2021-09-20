@@ -50,14 +50,16 @@ const Debug = (props) => {
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<RegisterContext.Provider value={register}>
 				<h1>Debug Controls</h1>
-				<label htmlFor="name">Which Flag Template to Render:</label>
-				<select id="name" {...register('name', { value: 'random', })}>
-					<option value="random">Random (default behavior)</option>
-					{flags.map((flag, i) => (
-						<option key={i} value={flag.name}>{flag.name}</option>
-					))}
-					<option value="custom">Custom (define below)</option>
-				</select>
+				<label className="field">
+					<select id="name" {...register('name', { value: 'random', })}>
+						<option value="random">Random (default behavior)</option>
+						{flags.map((flag, i) => (
+							<option key={i} value={flag.name}>{flag.name}</option>
+						))}
+						<option value="custom">Custom (define below)</option>
+					</select>
+					<span className="label">Which Flag Template to Render:</span>
+				</label>
 			</RegisterContext.Provider>
 		</form>
 	</div>);
