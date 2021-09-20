@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Circle, Layer, Line, Star, Stage } from 'react-konva';
 import randomOrValue from '../utils/random-or-value';
 import randomFlag from '../utils/random-flag';
@@ -81,20 +81,18 @@ const flagToShapes = (flag, colors, width, height) => flag.shapes.map((s, i) => 
 	return (<div/>);
 }).flat();
 
-const Flag = ({ reRender }) => {
+const Flag = () => {
 	const flag = randomFlag();
 	const colors = generateColors(flag.colors);
-	const layerRef = useRef(null);
-	if (layerRef.current !== null) {
-		layerRef.current.clear();
-	}
+
 	const flag_width = BASE * flag.dimensions[0] / flag.dimensions[1];
 	const flag_height = BASE;
 	const stage_width = BASE * 2;
 	const stage_height = flag_height;
+
 	return (
 		<Stage height={stage_height} width={stage_width}>
-			<Layer ref={layerRef} width={flag_width} height={flag_height} x={(stage_width - flag_width) / 2} y={(stage_height - flag_height) / 2}>
+			<Layer width={flag_width} height={flag_height} x={(stage_width - flag_width) / 2} y={(stage_height - flag_height) / 2}>
 				{flagToShapes(flag, colors, flag_width, flag_height)}
 			</Layer>
 		</Stage>
