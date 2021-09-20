@@ -14,7 +14,7 @@ const App = () => {
 			<div className="controls">
 				<button onClick={updateCount}>New Flag</button>
 			</div>
-			{ DEBUG ? <Debug debug={debug} update={updateDebug} /> : null }
+			{ DEBUG ? <Debug update={updateDebug} /> : null }
 		</div>
 	);
 }

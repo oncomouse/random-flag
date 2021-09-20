@@ -18,7 +18,7 @@ const Debug = (props) => {
 					})
 					if (custom) {
 						updateCustom(false);
-						}
+					}
 				} else {
 					updateCustom(true);
 				}
