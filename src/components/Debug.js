@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import mexp from 'math-expression-evaluator';
 import flags from '../flags';
+import './Debug.css';
 
 const validateStringInput = (str) => {
 	if (str.match(/^-{0,1}[0-9.]+$/g)) {
@@ -45,21 +46,24 @@ const Debug = (props) => {
 		});
 		return () => subscription.unsubscribe();
 	}, [watch, update, custom, updateCustom]);
-	return (<form onSubmit={handleSubmit(onSubmit)}>
-		<RegisterContext.Provider value={register}>
-			<label htmlFor="name">Which Flag Template to Render:</label>
-			<select id="name" {...register('name', { value: 'random', })}>
-				<option value="random">Random (default behavior)</option>
-				{flags.map((flag, i) => (
-					<option key={i} value={flag.name}>{flag.name}</option>
-				))}
-				<option value="custom">Custom (define below)</option>
-			</select>
-			{ !custom ? null : (
-				<CustomForm type={type}></CustomForm>
-			) }
-		</RegisterContext.Provider>
-	</form>);
+	return (<div className="debug-controls">
+		<form onSubmit={handleSubmit(onSubmit)}>
+			<RegisterContext.Provider value={register}>
+				<h1>Debug Controls</h1>
+				<label htmlFor="name">Which Flag Template to Render:</label>
+				<select id="name" {...register('name', { value: 'random', })}>
+					<option value="random">Random (default behavior)</option>
+					{flags.map((flag, i) => (
+						<option key={i} value={flag.name}>{flag.name}</option>
+					))}
+					<option value="custom">Custom (define below)</option>
+				</select>
+				{ !custom ? null : (
+					<CustomForm type={type}></CustomForm>
+				) }
+			</RegisterContext.Provider>
+		</form>
+	</div>);
 }
 
 const CustomForm = (props) => {
@@ -69,9 +73,9 @@ const CustomForm = (props) => {
 	const register = useContext(RegisterContext);
 	return (
 		<div>
-			<label htmlFor="custom-name">Template Name</label>
+			<label htmlFor="custom-name">Template Name:</label>
 			<input id="custom-name" { ...register('custom.name') } />
-			<label htmlFor="custom-type">Template Type</label>
+			<label htmlFor="custom-type">Template Type:</label>
 			<select id="custom-type" {...register('custom.type', { value: 'line' })}>
 				<option value="line">Line</option>
 				<option value="circle">Circle</option>
