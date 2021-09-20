@@ -1,13 +1,38 @@
+* {
+	--rhythm: 1.9rem;
+}
+
+html {
+	--color-primary-shade1: hsl(182,89%,52%);
+	--color-primary: hsl(182,89%,37%);
+	--color-primary-tint1: hsl(182,89%,22%);
+	--color-accent-shade1: hsl(170, 80%, 60%);
+	--color-accent: hsl(170, 80%, 45%);
+	--color-accent-tint1: hsl(170, 80%, 35%);
+	--color-link: #2C78BF;
+	--color-link-visited: #2C78BF;;
+	--color-link-hover: #E02C6D;
+	--color-link-active: #EF2F27;
+	/* --color-neutral-shade4: hsl(170, 10%, 98%); */
+	/* --color-neutral-shade3: hsl(170, 10%, 94%); */
+	/* --color-neutral-shade2: hsl(170, 10%, 85%); */
+	/* --color-neutral-shade1: hsl(170, 10%, 68%); */
+	/* --color-neutral: hsl(170, 10%, 55%); */
+	/* --color-neutral-tint1: hsl(170, 10%, 41%); */
+	/* --color-neutral-tint2: hsl(170, 10%, 30%); */
+	/* --color-neutral-tint3: hsl(170, 10%, 18%); */
+	/* --color-neutral-tint4: hsl(170, 10%, 2%); */
+}
+
 .konvajs-content {
 	margin: auto;
 	margin-top: 2rem;
 }
 
-.centered-button {
+.button.-centered {
 	margin: 0 auto;
 }
 
-.new-flag-button {
+.button.-new-flag {
 	margin-top: 4rem;
-	font-size: 2em;
 }
